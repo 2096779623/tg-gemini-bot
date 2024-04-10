@@ -109,10 +109,17 @@ func (t *APIKeyProxyTransport) RoundTrip(req *http.Request) (*http.Response, err
 }
 
 func main() {
-	var proxyaddr string
-	var proxyurl string
+	var (
+		proxyaddr string
+	        proxyurl string
+		verison bool
+	)
 	flag.StringVar(&proxyaddr, "proxy", "", "SOCKS5 proxy address")
+	flag.BoolVar(&version, "version", false, "show version")
 	flag.Parse()
+	if version {
+		fmt.Print("2024.04.10")
+	}
 	var pref tele.Settings
 
 	if proxyaddr != "" {

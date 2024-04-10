@@ -12,8 +12,8 @@ cd tg-gemini-bot
 go mod tidy
 go build -o tg-gemini-bot
 chmod +x tg-gemini-bot
-./tg-gemini-bot
-# or `go run main.go` directly
+TELEBOT_TOKEN=your_telegram_bot_token GEMINI_API_KEY=your_gemini_api_key ./tg-gemini-bot
+# or `TELEBOT_TOKEN=your_telegram_bot_token GEMINI_API_KEY=your_gemini_api_key go run main.go` directly
 ```
 ## Docker (recommend)
 

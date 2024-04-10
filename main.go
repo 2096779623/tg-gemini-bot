@@ -100,10 +100,8 @@ func (t *APIKeyProxyTransport) RoundTrip(req *http.Request) (*http.Response, err
 	args := newReq.URL.Query()
 	args.Set("key", t.APIKey)
 	newReq.URL.RawQuery = args.Encode()
-	// 执行 HTTP 请求，并处理可能的错误
 	resp, err := rt.RoundTrip(&newReq)
 	if err != nil {
-		// 返回网络请求中的错误
 		return nil, fmt.Errorf("error during round trip: %v", err)
 	}
 
@@ -180,7 +178,7 @@ func main() {
 		if err != nil {
 			logger.Fatal("", zap.Error(err))
 		}
-		geminis.GetPhotoResponse(c, client.GenerativeModel("gemini-1.5-pro-vision"), imageType, text, data)
+		geminis.GetPhotoResponse(c, client.GenerativeModel("gemini-1.0-pro-vision"), imageType, text, data)
 		os.Remove(photo.FileID)
 		//}
 		//c.Send(resp, &tele.SendOptions{ParseMode: tele.ModeMarkdown})
@@ -204,7 +202,7 @@ func main() {
 			text = c.Text()
 		)
 		if c.Message().Photo == nil {
-			geminis.GetTextResponse(c, client.GenerativeModel("models/gemini-1.5-pro"), text)
+			geminis.GetTextResponse(c, client.GenerativeModel("models/gemini-1.5-pro-latest"), text)
 			client.ListModels(ctx)
 			iter := client.ListModels(ctx)
 			for {
